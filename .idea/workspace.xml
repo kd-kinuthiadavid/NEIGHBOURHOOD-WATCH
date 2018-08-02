@@ -82,8 +82,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/neighbourhood_watch/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="80" column="33" lean-forward="false" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="33" />
+            <state relative-caret-position="324">
+              <caret line="84" column="1" lean-forward="true" selection-start-line="84" selection-start-column="1" selection-end-line="84" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -471,8 +471,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/neighbourhood_watch/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="80" column="33" lean-forward="false" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="33" />
+        <state relative-caret-position="324">
+          <caret line="84" column="1" lean-forward="true" selection-start-line="84" selection-start-column="1" selection-end-line="84" selection-end-column="1" />
           <folding />
         </state>
       </provider>
