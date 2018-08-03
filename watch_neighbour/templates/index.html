@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block content %}
+{{ block.super}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1.5"></div>
+    {% for neighbourhood in neighbourhoods %}
+       <div class="col-md-3">
+             <div class="card">
+                <img class="img-responsive" src="{{neighbourhood.neighbourhood_photo.url}}" alt="image">
+                <div class="card-body">
+                    <small class="card_text small-name"><strong>Name:</strong> {{neighbourhood.neighbourhood_name}}</small>
+                    <br>
+                    <small class="card_text small-description"><strong>Location:</strong> {{neighbourhood.neighbourhood_location.name}}</small>
+                    <br>
+                    <small class="card_text small-location"><strong>Occupants Counts:</strong> {{ neighbourhood.occupants_count }}</small>
+
+                </div>
+          </div>
+    </div>
+  {% endfor %}
+        <div class="col-md-1.5"></div>
+    </div>
+</div>
+{% endblock %}
