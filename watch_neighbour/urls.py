@@ -10,6 +10,9 @@ urlpatterns=[
         url(r'^new/neighbourhood$', views.new_neighbourhood, name='new-neighbourhood'),
         url(r'^new/post$', views.new_post, name='new-post'),
         url(r'^current_user_profile/(?P<profile_id>\d+)', views.current_user_profile, name='current_user_profile'),
+        url(r'^single_neighbourhood/(?P<neighbourhood_id>\d+)', views.single_neighbourhood, name='single_neighbourhood'),
+        url(r'^new/business', views.new_business, name='new-business'),
+        url(r'^new/department', views.new_department, name='new-department'),
 
 ]
 if settings.DEBUG:
