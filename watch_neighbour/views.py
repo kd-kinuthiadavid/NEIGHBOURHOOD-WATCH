@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from watch_neighbour.forms import NewProfileForm, NewNeighbourhoodForm, NewPostForm
-from watch_neighbour.models import Neighbourhood, Profile, Post
+from watch_neighbour.forms import NewProfileForm, NewNeighbourhoodForm, NewPostForm, NewBusinessForm, NewDepartmentForm
+from watch_neighbour.models import Neighbourhood, Profile, Post, Business, Department
 
 
 def welcome(request):
@@ -54,16 +54,49 @@ def new_post(request):
             post = form.save(commit=False)
             post.user = current_user
             post.save()
-            return redirect('single_neighbourhood')
+
     else:
         form = NewPostForm()
     return render(request, 'new_post.html', {"form": form})
+
+
+def new_business(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = NewBusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.user = current_user
+            business.save()
+
+    else:
+        form = NewBusinessForm()
+    return render(request, 'new_business.html', {"form": form})
+
+
+def new_department(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = NewDepartmentForm(request.POST, request.FILES)
+        if form.is_valid():
+            department = form.save(commit=False)
+            department.user = current_user
+            department.save()
+
+    else:
+        form = NewDepartmentForm()
+    return render(request, 'new_department.html', {"form": form})
 
 def current_user_profile(request, profile_id):
     profile = Profile.objects.filter(user_id=profile_id).first()
     return render(request, 'profile.html', locals())
 
 def single_neighbourhood(request, neighbourhood_id):
-    post = Post.objects.all()
+    posts = Post.objects.all()
+    neighbourhood = Neighbourhood.objects.filter(id=neighbourhood_id).first()
+    businesses = Business.objects.all()
+    departments = Department.objects.all()
     return render(request, 'single_neighbourhood.html', locals())
 
