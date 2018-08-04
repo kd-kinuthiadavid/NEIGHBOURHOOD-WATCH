@@ -53,3 +53,17 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Department(models.Model):
+    department_photo = models.ImageField(upload_to='business/')
+    department_name = models.CharField(max_length=100, blank=True, null=True)
+    department_description = models.TextField(max_length=200, blank=True, null=True)
+    department_email = models.CharField(max_length=100, blank=True, null=True)
+    department_phone = models.IntegerField(blank=True, null=True)
+    department_box = models.CharField(max_length=100, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.department_name
