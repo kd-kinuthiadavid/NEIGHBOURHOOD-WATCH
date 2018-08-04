@@ -10,7 +10,7 @@
              <div class="card">
                 <img class="img-responsive" src="{{neighbourhood.neighbourhood_photo.url}}" alt="image">
                 <div class="card-body">
-                    <small class="card_text small-name"><strong>Name:</strong> {{neighbourhood.neighbourhood_name}}</small>
+                    <a href="{% url 'single_neighbourhood' neighbourhood_id=neighbourhood.id %}"><small class="card_text small-name"><strong>Name:</strong> {{neighbourhood.neighbourhood_name}}</small></a>
                     <br>
                     <small class="card_text small-description"><strong>Location:</strong> {{neighbourhood.neighbourhood_location.name}}</small>
                     <br>
