@@ -1,6 +1,6 @@
 from django import forms
 
-from watch_neighbour.models import Profile, Neighbourhood, Post, Business, Department
+from watch_neighbour.models import Profile, Neighbourhood, Post, Business, Department, Location
 
 
 class NewProfileForm(forms.ModelForm):
@@ -25,10 +25,16 @@ class NewPostForm(forms.ModelForm):
 class NewBusinessForm(forms.ModelForm):
     class Meta:
         model = Business
-        exclude = ['user', 'neighbourhood']
+        exclude = ['user']
 
 
 class NewDepartmentForm(forms.ModelForm):
     class Meta:
         model = Department
-        exclude = ['user', 'neighbourhood']
+        exclude = ['user']
+
+
+class NewLocationForm(forms.ModelForm):
+    class Meta:
+        model = Location
+        fields = ['neighbourhood', 'name']
