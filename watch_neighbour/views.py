@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from watch_neighbour.forms import NewProfileForm, NewNeighbourhoodForm, NewPostForm, NewBusinessForm, NewDepartmentForm
+from watch_neighbour.forms import NewProfileForm, NewNeighbourhoodForm, NewPostForm, NewBusinessForm, NewDepartmentForm, \
+    NewLocationForm
 from watch_neighbour.models import Neighbourhood, Profile, Post, Business, Department
 
 
@@ -14,6 +15,12 @@ def all_neighbourhoods(request):
     title = 'neighbourhoods'
     neighbourhoods = Neighbourhood.objects.all()
     return render(request, 'index.html', locals())
+
+def occupants_and_location(request, neighbourhood_id):
+    occupants = Profile.objects.filter(neighbourhood_id=neighbourhood_id).count()
+    print(occupants)
+    return render(request, 'occ.html', locals())
+
 
 
 def new_profile(request):
@@ -54,7 +61,7 @@ def new_post(request):
             post = form.save(commit=False)
             post.user = current_user
             post.save()
-
+            return redirect('neighbourhood')
     else:
         form = NewPostForm()
     return render(request, 'new_post.html', {"form": form})
@@ -69,6 +76,7 @@ def new_business(request):
             business = form.save(commit=False)
             business.user = current_user
             business.save()
+            return redirect('neighbourhood')
 
     else:
         form = NewBusinessForm()
@@ -84,19 +92,38 @@ def new_department(request):
             department = form.save(commit=False)
             department.user = current_user
             department.save()
+            return redirect('neighbourhood')
 
     else:
         form = NewDepartmentForm()
     return render(request, 'new_department.html', {"form": form})
+
+
+def new_location(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = NewLocationForm(request.POST, request.FILES)
+        if form.is_valid():
+            location = form.save(commit=False)
+            location.user = current_user
+            location.save()
+            return redirect('new-neighbourhood')
+
+    else:
+        form = NewLocationForm()
+    return render(request, 'location.html', {"form": form})
+
 
 def current_user_profile(request, profile_id):
     profile = Profile.objects.filter(user_id=profile_id).first()
     return render(request, 'profile.html', locals())
 
 def single_neighbourhood(request, neighbourhood_id):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(neighbourhood_id=neighbourhood_id)
     neighbourhood = Neighbourhood.objects.filter(id=neighbourhood_id).first()
-    businesses = Business.objects.all()
-    departments = Department.objects.all()
+    businesses = Business.objects.filter(neighbourhood_id=neighbourhood_id)
+    departments = Department.objects.filter(neighbourhood_id=neighbourhood_id)
+
     return render(request, 'single_neighbourhood.html', locals())
 
