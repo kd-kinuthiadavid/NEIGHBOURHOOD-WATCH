@@ -13,6 +13,8 @@ urlpatterns=[
         url(r'^single_neighbourhood/(?P<neighbourhood_id>\d+)', views.single_neighbourhood, name='single_neighbourhood'),
         url(r'^new/business', views.new_business, name='new-business'),
         url(r'^new/department', views.new_department, name='new-department'),
+        url(r'^occupants_and_location/(?P<neighbourhood_id>\d+)', views.occupants_and_location, name='occupants_and_location'),
+        url(r'^new/location', views.new_location, name='new-location'),
 
 ]
 if settings.DEBUG:
