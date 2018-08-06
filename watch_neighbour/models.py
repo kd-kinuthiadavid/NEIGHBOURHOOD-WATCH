@@ -13,12 +13,16 @@ class Neighbourhood(models.Model):
     def __str__(self):
         return self.neighbourhood_name
 
+
 class Location(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, blank=True, null=True)
 
+
     def __str__(self):
         return self.name
+
+
 
 
 class Business(models.Model):
@@ -50,7 +54,9 @@ class Post(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
     content = models.TextField(max_length=200, blank=True, null=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True, related_name='posted_by')
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='posts_for')
 
+    
     def __str__(self):
         return self.title
 
