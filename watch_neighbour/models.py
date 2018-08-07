@@ -37,6 +37,12 @@ class Business(models.Model):
     def __str__(self):
         return self.business_name
 
+    def search_business(cls, search_term):
+        businesses = cls.objects.filter(business_name__icontains=search_term)
+        return business
+
+
+
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profile/')
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -68,8 +74,16 @@ class Department(models.Model):
     department_email = models.CharField(max_length=100, blank=True, null=True)
     department_phone = models.IntegerField(blank=True, null=True)
     department_box = models.CharField(max_length=100, blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.department_name
+
+
+class Comment(models.Model):
+    content = models.TextField(max_length=200, blank=True, null=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.content

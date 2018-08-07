@@ -1,6 +1,6 @@
 from django import forms
 
-from watch_neighbour.models import Profile, Neighbourhood, Post, Business, Department, Location
+from watch_neighbour.models import Profile, Neighbourhood, Post, Business, Department, Location, Comment
 
 
 class NewProfileForm(forms.ModelForm):
@@ -38,3 +38,8 @@ class NewLocationForm(forms.ModelForm):
     class Meta:
         model = Location
         fields = ['neighbourhood', 'name']
+
+class NewCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['post', 'content']

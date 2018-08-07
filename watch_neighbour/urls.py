@@ -15,6 +15,10 @@ urlpatterns=[
         url(r'^new/department', views.new_department, name='new-department'),
         url(r'^occupants_and_location/(?P<neighbourhood_id>\d+)', views.occupants_and_location, name='occupants_and_location'),
         url(r'^new/location', views.new_location, name='new-location'),
+        url(r'^single_post/(?P<id>\d+)', views.single_post, name='single_post'),
+        url(r'^new/comment', views.new_comment, name='new-comment'),
+        url(r'^comments_for_posts/(?P<post_id>\d+)', views.comments_for_posts, name='comments_for_posts'),
+        url(r'^search/', views.search_results, name='search_results'),
 
 ]
 if settings.DEBUG:

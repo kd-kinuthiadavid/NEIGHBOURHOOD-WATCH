@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from watch_neighbour.forms import NewProfileForm, NewNeighbourhoodForm, NewPostForm, NewBusinessForm, NewDepartmentForm, \
-    NewLocationForm
-from watch_neighbour.models import Neighbourhood, Profile, Post, Business, Department
+    NewLocationForm, NewCommentForm
+from watch_neighbour.models import Neighbourhood, Profile, Post, Business, Department, Comment
 
 
 def welcome(request):
@@ -114,6 +114,21 @@ def new_location(request):
         form = NewLocationForm()
     return render(request, 'location.html', {"form": form})
 
+def new_comment(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = NewCommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.save()
+            return redirect('neighbourhood')
+
+    else:
+        form = NewCommentForm()
+    return render(request, 'comment.html', {"form": form})
+
 
 def current_user_profile(request, profile_id):
     profile = Profile.objects.filter(user_id=profile_id).first()
@@ -126,4 +141,25 @@ def single_neighbourhood(request, neighbourhood_id):
     departments = Department.objects.filter(neighbourhood_id=neighbourhood_id)
 
     return render(request, 'single_neighbourhood.html', locals())
+
+def single_post(request, id):
+    post = Post.objects.get(id=id)
+    return render(request, 'post.html', locals())
+
+def comments_for_posts(request, post_id):
+    comments = Comment.objects.filter(id=post_id)
+    return render(request, 'post.html', locals())
+
+
+def search_results(request):
+    if 'neighbourhood' in request.GET and request.GET["neighbourhood"]:
+        search_term = request.GET.get("neighbourhood")
+        searched_neighbourhood = Business.search_business(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html', {"message": message, "images": searched_neighbourhood})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html', {"message": message})
 

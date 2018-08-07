@@ -63,6 +63,11 @@
                 <small class="card-text">{{ post.content }}</small>
                 <small>{{post.neighbourhood.neighbourhood_name}}</small>
                 <small>vfbfffhlfjdnrurgdjvdsjvjefvvsdfs</small>
+                <span class="glyphicons glyphicons-comments"></span>
+                    <br>
+                <div>
+                    <a href="{% url 'single_post' id=post.id %}"><img class="explore-img" src="{% static 'icons/comment.png' %}"></a>
+                </div>
 
                 </div>
                 <div class="card-footer text-muted">
