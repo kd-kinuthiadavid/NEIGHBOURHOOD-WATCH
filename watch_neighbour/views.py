@@ -157,7 +157,7 @@ def search_results(request):
         searched_neighbourhood = Business.search_business(search_term)
         message = f"{search_term}"
 
-        return render(request, 'search.html', {"message": message, "images": searched_neighbourhood})
+        return render(request, 'search.html', {"message": message, "businesses": searched_neighbourhood})
 
     else:
         message = "You haven't searched for any term"
