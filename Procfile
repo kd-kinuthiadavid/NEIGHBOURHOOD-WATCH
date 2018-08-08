@@ -1,1 +1,1 @@
-web: gunicorn neighbourhood_watch.wsgi
+web: gunicorn watch_neighbour.wsgi
