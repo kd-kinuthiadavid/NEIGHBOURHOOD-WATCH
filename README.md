@@ -91,7 +91,7 @@ version 1.0.0
 No bugs at the time of the writting, if any bugs are found, you can reach me at:
 [my email](kd.kinuthiadavid@gmail.com)
 
-## Authors
+## Author
 
 * **KINUTHIA DAVID**
 
