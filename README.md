@@ -102,5 +102,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Hat tip to my TMs
-* Inspiration from [instagram](https://www.instagram.com/)
 * [Ben Karanja ](https://gist.github.com/Benard18/01e28cfbd911f87c7df8ee33cbdaa593) for Deployment
