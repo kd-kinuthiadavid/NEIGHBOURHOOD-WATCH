@@ -13,6 +13,20 @@ class Neighbourhood(models.Model):
     def __str__(self):
         return self.neighbourhood_name
 
+    def create_neighbourhood(self):
+        self.save()
+
+    def delete_neighbourhood(self):
+        self.delete()
+
+    def update_neighbourhood(self):
+        self.update()
+
+    @classmethod
+    def find_neighbourhood(cls, neighbourhood_id):
+        neighbourhood = cls.objects.get(neighbourhood_id=neighbourhood_id)
+        return neighbourhood
+
 
 class Location(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -36,6 +50,20 @@ class Business(models.Model):
 
     def __str__(self):
         return self.business_name
+
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    def update_business(self):
+        self.update()
+
+    @classmethod
+    def find_business(cls, business_id):
+        business = cls.objects.get(business_id=business_id)
+        return business
 
     @classmethod
     def search_business(cls, search_term):
