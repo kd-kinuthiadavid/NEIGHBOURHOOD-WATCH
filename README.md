@@ -1,7 +1,8 @@
 # NEIGHBOURHOOD WATCH
 
-A django-clone of the website for the popular photo app [instagram](https://www.instagram.com/)
-## Getting Started
+ A web application that allows you to be in the loop about everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
+ 
+ ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
